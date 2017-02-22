@@ -1,0 +1,29 @@
+_schema-version: '2.0'
+ID: LeverX-Cars-00
+version: 0.0.1
+
+modules:
+ - name: web
+   type: html5
+   path: web
+   requires:
+    - name: lx_car_test-uaa
+
+ - name: core-db
+   type: hdb
+   path: core-db
+   requires:
+    - name: hdi-container
+      properties:
+        TARGET_CONTAINER: ~{hdi-container-name}
+
+resources:
+ - name: lx_car_test-uaa
+   type: com.sap.xs.uaa
+ - name: hdi-container
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
+   parameters:
+     config:
+       schema: LX_CAR_TEST
